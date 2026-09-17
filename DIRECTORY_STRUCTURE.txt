@@ -1,0 +1,146 @@
+SupplyChainGHG_Refactored/          ← 项目根目录
+│
+├── 📄 README.md                     ← 项目主文档（中英文）
+├── 📄 QUICKSTART.md                 ← 5 分钟快速开始指南
+├── 📄 PROJECT_STRUCTURE.md          ← 架构和文件说明
+├── 📄 LICENSE                       ← MIT 许可证
+│
+├── 📦 setup.py                      ← Python 包配置
+├── 📄 requirements.txt              ← 依赖列表
+├── 📄 .gitignore                    ← Git 忽略规则
+│
+├── 📁 src/                          ← 源代码目录
+│   └── 📁 ghg_analysis/             ← 核心 Python 包
+│       ├── __init__.py              ← 包初始化 (19 行)
+│       │   导出: GHGDataLoader, GHGAnalyzer, GHGVisualizer
+│       │
+│       ├── loader.py                ← 数据加载模块 (166 行)
+│       │   GHGDataLoader 类
+│       │   - load() 加载 CSV
+│       │   - validate() 验证数据
+│       │   - clean() 清理数据
+│       │   - get_data() 获取数据
+│       │   - get_summary() 摘要
+│       │
+│       ├── analyzer.py              ← 分析引擎模块 (227 行)
+│       │   GHGAnalyzer 类
+│       │   - summary_statistics() 统计
+│       │   - top_emitters() 排行
+│       │   - emission_by_sector() 部门分析
+│       │   - filter_by_naics() NAICS 筛选
+│       │   - filter_by_industry() 行业筛选
+│       │   - get_statistics_table() 统计表
+│       │   - compare_industries() 行业对比
+│       │   - export_to_csv() CSV 导出
+│       │
+│       ├── visualizer.py            ← 可视化模块 (248 行)
+│       │   GHGVisualizer 类
+│       │   - plot_top_emitters() 排行图
+│       │   - plot_distribution() 分布图
+│       │   - plot_sector_comparison() 部门对比
+│       │   - plot_margin_comparison() 边际对比
+│       │   - plot_custom() 自定义图表
+│       │
+│       └── utils.py                 ← 工具函数模块 (207 行)
+│           - get_naics_sector_name() NAICS 转换
+│           - calculate_emissions() 排放计算
+│           - convert_emissions_unit() 单位转换
+│           - aggregate_by_sector() 按部门聚合
+│           - print_summary_report() 报告打印
+│           - export_analysis_results() 结果导出
+│
+├── 📁 tests/                        ← 测试目录
+│   ├── __init__.py
+│   ├── test_loader.py               ← Loader 测试 (88 行)
+│   │   ✓ test_load_csv
+│   │   ✓ test_file_not_found
+│   │   ✓ test_validate_data
+│   │   ✓ test_clean_data
+│   │   ✓ test_get_summary
+│   │
+│   └── test_analyzer.py             ← Analyzer 测试 (104 行)
+│       ✓ test_initialization
+│       ✓ test_summary_statistics
+│       ✓ test_top_emitters
+│       ✓ test_filter_by_naics
+│       ✓ test_filter_by_industry
+│       ✓ test_get_statistics_table
+│       ✓ test_compare_industries
+│
+├── 📁 data/                         ← 数据目录
+│   ├── 📁 raw/                      ← 原始数据
+│   │   └── SupplyChainGHGEmissionFactors_v1.2_NAICS_CO2e_USD2021.csv
+│   │       (1,500+ 行的原始数据文件)
+│   │
+│   └── 📁 processed/                ← 处理后的数据（输出）
+│       (自动生成)
+│
+├── 📁 notebooks/                    ← Jupyter Notebook
+│   └── 01_exploratory_analysis.ipynb
+│       完整的探索性分析示例
+│       - 数据加载和摘要
+│       - 统计分析
+│       - 可视化演示
+│       - 筛选和对比
+│       - 排放计算示例
+│       - 结果导出
+│
+├── 📁 scripts/                      ← 可执行脚本
+│   └── process_data.py              (102 行)
+│       完整的数据处理管道
+│       - 自动加载数据
+│       - 生成摘要报告
+│       - 创建可视化
+│       - 导出结果文件
+│       使用: python scripts/process_data.py
+│
+└── 📁 output/                       ← 输出目录（自动生成）
+    ├── emission_statistics.csv      ← 统计数据表
+    ├── sector_analysis.csv          ← 部门分析
+    ├── top_emitters.png             ← 排行图表
+    ├── distribution.png             ← 分布直方图
+    └── sector_comparison.png        ← 部门对比图
+
+================================================================================
+核心统计
+================================================================================
+
+代码行数:
+  - 核心库:      867 行 (5 个模块)
+  - 测试:        192 行 (14+ 个测试)
+  - 脚本:        102 行 (完整管道)
+  - 配置:         38 行 (setup + requirements)
+  - 文档:        详细完整
+
+文件数:
+  - Python 文件:  9 个
+  - 数据文件:     1 个 (CSV)
+  - Notebook:     1 个
+  - 文档:         4 个 (MD)
+  - 配置:         3 个
+
+项目大小: ~268 KB
+
+================================================================================
+快速导航
+================================================================================
+
+📚 文档（按优先级）:
+  1. README.md          - 项目概述和基本使用
+  2. QUICKSTART.md      - 5 分钟快速上手
+  3. PROJECT_STRUCTURE  - 架构和模块详解
+
+🚀 快速开始:
+  python scripts/process_data.py
+
+💻 Python API:
+  from ghg_analysis import GHGAnalyzer
+  analyzer = GHGAnalyzer('data/raw/...csv')
+
+🧪 测试:
+  pytest tests/ -v
+
+📓 交互式:
+  jupyter notebook notebooks/01_exploratory_analysis.ipynb
+
+================================================================================
